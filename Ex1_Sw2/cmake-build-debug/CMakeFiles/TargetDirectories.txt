@@ -1,0 +1,3 @@
+/home/vboxuser/CLionProjects/Ex1_Sw2/cmake-build-debug/CMakeFiles/Ex1_Sw2.dir
+/home/vboxuser/CLionProjects/Ex1_Sw2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/vboxuser/CLionProjects/Ex1_Sw2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
