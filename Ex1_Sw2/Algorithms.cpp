@@ -1,28 +1,34 @@
-//
-// Created by vboxuser on 4/24/24.
-//
 
 #include "Algorithms.hpp"
-#include "Graph.hpp"
 #include "Traverse.hpp"
 
-int Algorithms::isConnected(const Graph& g) {
-
+int Algorithms::isConnected(Graph& g) {
+    return DFS::isConnected_ByDFS(g);
 }
 
-void Algorithms::isContainsCycle(const Graph& g) {
-
+void Algorithms::isContainsCycle(Graph& g) {
+    if(g.Type==NegativeWeight) Belman_Ford::DetectCycle(g);else
+        DFS::is_Cyclic(g);
 }
 
-void Algorithms::shortestPath(const Graph& g, int, int) {
+void Algorithms::shortestPath(Graph& g, int start, int end) {
+    switch(g.Type){
+        case NoneWeight:
+            BFS::BFS_init(start, end, g);
+            break;
+        case Weight:
+            Dijkstra::Initiate(start, end, g);
+            break;
+        case NegativeWeight:
+            Belman_Ford::printPath(start, end, g);
+            break;
+        default:
+            break;
 
+    }
+}
+void Algorithms::isBipartite(Graph& g) {
+    Bipartite::is_Bip(g,0);
 }
 
-void Algorithms::isBipartite(const Graph& g) {
-
-}
-
-bool Algorithms::is_symmetric(const Graph &g) {
-return false;
-}
 

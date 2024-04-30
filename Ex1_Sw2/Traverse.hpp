@@ -5,27 +5,26 @@
 #ifndef EX1_SW2_TRAVERSE_HPP
 #define EX1_SW2_TRAVERSE_HPP
 #include "Graph.hpp"
+#include "BFS.hpp"
+#include "DFS.hpp"
+#include "Bipartite.hpp"
+#include "Dijkstra.hpp"
+#include "Belman_Ford.hpp"
+#include <limits>
+#define  MAX std::numeric_limits<int>::max();
+#define NoneWeight 0
+#define Weight 1
+#define NegativeWeight 2
 
 class Traverse {
 
-    const Graph  g;
-    int num_ver;
-    vector<vector<int>> neighbors;
-    bool * visit{};
-    bool directed{};
-    void populated_neighbors();
-    bool is_directed();
-
-     Traverse(Graph& graph) : g(graph) {
-         num_ver=(int)graph.graph[0].size();
-         this->neighbors = vector<vector<int>>(num_ver);
-         directed=is_directed();
-    }
-
 public:
-     int DFS_Undirected(int vertex);
-     int DFS_Directed(int vertex);
-     void BFS(int vertex);    //Single source no weights shortest path
+    static bool directed;
+    static bool is_directed(Graph &g);
+    static void relax(int a,int b,Graph &g);
+    enum color { WHITE,GRAY,BLACK};
+    static Graph Transpose(Graph &g);
+
 };
 
 

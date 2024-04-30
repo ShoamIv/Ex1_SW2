@@ -8,11 +8,10 @@
 
 class Algorithms {
 public:
-    static int isConnected(const Graph& g);
-    static void isContainsCycle(const Graph& g);
-    static void shortestPath(const Graph& g,int,int);
-    static void isBipartite(const Graph& g);
-    static bool is_symmetric(const Graph& g);
+    static int isConnected(Graph& g);
+    static void isContainsCycle(Graph& g);
+    static void shortestPath( Graph& g,int start,int end);
+    static void isBipartite(Graph& g);
 };
 
 

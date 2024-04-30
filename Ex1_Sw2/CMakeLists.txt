@@ -13,4 +13,10 @@ add_executable(Ex1_Sw2 main.cpp
         Dijkstra.cpp
         Dijkstra.hpp
         Belman_Ford.cpp
-        Belman_Ford.hpp)
+        Belman_Ford.hpp
+        DFS.cpp
+        DFS.hpp
+        BFS.cpp
+        BFS.hpp
+        Bipartite.cpp
+        Bipartite.hpp)
