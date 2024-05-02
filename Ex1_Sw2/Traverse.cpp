@@ -17,7 +17,7 @@ bool Traverse::is_directed(Graph &g) {
     return true;
 }
 void Traverse::relax(int a, int b, Graph &g) {
-    if(g.d[b]<g.d[a]+ g.graph[a][b]){
+    if(g.d[b]>g.d[a]+ g.graph[a][b]){
         g.d[b]=g.d[a]+g.graph[a][b];
         g.p[b]=a;
     }

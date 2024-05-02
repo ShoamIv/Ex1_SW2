@@ -11,6 +11,7 @@ using namespace std;
 Graph::Graph()= default;
 
 void Graph::load_graph(vector<vector<int>> graph_matrix) {
+    clear();
     vector<int> vect;
     bool flag=true;
     if(graph_matrix.size()!=graph_matrix[0].size()){
@@ -60,11 +61,9 @@ void Graph::populated_neighbors() {
     this->neighbors=vector<vector<int>>(num_ver);
     for (int vertex = 0; vertex < this->num_ver; vertex++) {
         for (int j = 0; j < this->num_ver; j++) {
-            if (this->graph[vertex][j] == 1) {
-                this->neighbors[vertex].push_back(j);
+                this->neighbors[vertex].push_back(this->graph[vertex][j]);
             }
         }
-    }
     for (int i = 0; i < this->num_ver; i++) {
      //   cout << "Neighbors of vertex " << i << ": ";
         for (int j = 0; j < this->neighbors[i].size(); j++) {
@@ -72,6 +71,18 @@ void Graph::populated_neighbors() {
         }
     //    cout << endl;
     }
+}
+
+void Graph::clear() {
+    graph.clear();
+    num_ver = 0;
+    color.clear();
+    d.clear();
+    p.clear();
+    neighbors.clear();
+    edge_list.clear();
+    Type = 0;
+
 }
 
 

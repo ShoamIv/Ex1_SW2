@@ -14,12 +14,18 @@ int main() {
             {0, 1, 0},
             {1, 0, 1},
             {0, 1,0}};
+    vector<vector<int>> graph3 = {
+            {0, 1, 2, 0, 0},
+            {1, 0, 3, 0, 0},
+            {2, 3, 0, 4, 0},
+            {0, 0, 4, 0, 5},
+            {0, 0, 0, 5, 0}};
+    g.load_graph(graph3);
 
-    g.load_graph(graph);
-  //  int ans1=Algorithms::isConnected(g);
-   // Algorithms::shortestPath(g,0,2);
-    Algorithms::isBipartite(g);
-   //   cout<<ans1<<endl;
+      //int ans1=Algorithms::isConnected(g);
+    //Algorithms::shortestPath(g,0,2);
+    Algorithms ::shortestPath(g, 0, 4);
+     // cout<<ans1<<endl;
 
     return 0;
 }

@@ -5,7 +5,6 @@
 #include "DFS.hpp"
 
 
-
 void DFS::DFS_init(int vertex,Graph &g) {
     int ans=0;
    for(int i=0; i<g.num_ver; i++) {
@@ -27,21 +26,16 @@ void DFS::DFS_Visit(int vertex, Graph &g) {
 
 
 bool DFS::is_Cyclic(Graph &g) {
+    DFS_init(0,g);
     bool cycle=false;
-    for(int i=0; i<g.num_ver; i++){
-        if(g.color[i]==Traverse::WHITE) {
-        //   cycle=DFS_init(i,g);
-        }
-        if(cycle)break;
-    }
+
     return cycle;
 }
 
 int DFS::isConnected_ByDFS(Graph &g) {
     DFS_init(0,g);
     for(int i=0; i<g.num_ver; i++){
-        if(g.color[i]== Traverse::WHITE) return 0;
-    }
+        if(g.color[i]== Traverse::WHITE) return 0;}
     Graph t= Traverse::Transpose(g);
     DFS_init(0,t);
     for(int i=0; i<g.num_ver; i++){

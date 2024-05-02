@@ -8,6 +8,7 @@
 using namespace std;
 
 class Graph{
+    void clear();
 
 public:
     Graph();
@@ -16,6 +17,7 @@ public:
     std::vector<int> color;
     std::vector<int> d;
     std::vector<int> p;
+
     int num_ver{};
     int Type{};
     void printGraph();
