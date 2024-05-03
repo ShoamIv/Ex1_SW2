@@ -4,6 +4,7 @@
 #include <vector>
 #include <list>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -17,19 +18,19 @@ public:
     std::vector<int> color;
     std::vector<int> d;
     std::vector<int> p;
-
+    bool directed;
+    vector<std::map<int,int>> ne;
     int num_ver{};
     int Type{};
     void printGraph();
     void getType();
     void load_graph(vector<vector<int>> graph);
-    void populated_neighbors();
     typedef struct edge {
         int source;
         int dest;
         int weight;
     } Edge;
-    void Set_Edge(Graph &g);
+    void Set_Edge();
     vector<Edge> edge_list;
 
 };

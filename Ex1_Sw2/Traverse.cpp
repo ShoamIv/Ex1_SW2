@@ -28,14 +28,9 @@ Graph Traverse::Transpose(Graph &g) {
         vector<vector<int>>gt=vector<vector<int>>(g.num_ver, vector<int>(g.num_ver));
     for(int i=0; i<g.num_ver; i++){
         for(int j=0; j<g.num_ver; j++){
-           // if( gt[i][j]!=g.graph[j][i]){
-           //     g.directed=false;
-           // }
-
             gt[i][j]=g.graph[j][i];
         }
     }
-
     t.load_graph(gt);
     return t;
 }

@@ -10,11 +10,11 @@
 class DFS {
     static void DFS_init(int vertex,Graph &g);
     static void DFS_Visit(int vertex,Graph &g);
-    int time;
-    static vector<vector<int>> neighbors;
+    static void Print_Cycle();
+    static std::vector<int>cycle;
 public:
     static int isConnected_ByDFS(Graph &g);
-    static bool is_Cyclic(Graph &g);
+    static void is_Cyclic(Graph &g);
 
 };
 

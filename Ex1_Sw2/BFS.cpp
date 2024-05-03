@@ -14,10 +14,11 @@ void BFS::BFS_init(int vertex,int target,Graph &g ) {
     q.push(vertex);
     while (!q.empty()) {
         int u = q.front();
-        vector<int> neighbors_list = g.neighbors[u]; // Assuming neighbors is now a vector
+        vector<int>neighbors_list = g.neighbors[u]; // Assuming neighbors is now a vector
         q.pop();
         ans += std::to_string(u) + "->";
-        for (int adjacentVertex : neighbors_list) {
+        for (int adjacentVertex=0;adjacentVertex<neighbors_list.size(); adjacentVertex++) {
+            if(g.graph[u][adjacentVertex]==0)continue;
             if (g.color[adjacentVertex] == Traverse::WHITE) {
                 g.color[adjacentVertex] = Traverse::GRAY;
                 g.d[adjacentVertex]= g.d[u]+1;
@@ -25,8 +26,8 @@ void BFS::BFS_init(int vertex,int target,Graph &g ) {
                 q.push(adjacentVertex);
             }
         }
+        g.color[vertex]=Traverse::BLACK;
     }
-    g.color[vertex]=Traverse::BLACK;
     if(g.color[target]==Traverse::WHITE) cout <<-1<<endl;else
     cout<<ans<<endl;
 }

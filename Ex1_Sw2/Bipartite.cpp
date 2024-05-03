@@ -16,14 +16,16 @@ int Bipartite::is_Bip(Graph &g, int vertex) {
         int u=q.front();
         vector<int> neighbors_list = g.neighbors[u]; // Assuming neighbors is now a vector
         q.pop();
-        for (int adjacentVertex: neighbors_list) {
-          if(color[adjacentVertex]==color[u]) bip_flag=0;else{
-              if (color[adjacentVertex] == Traverse::GRAY) {
-                  if(color[u]==Traverse::WHITE) {
-                      color[adjacentVertex] = Traverse::BLACK;
-                  }else color[adjacentVertex] = Traverse::WHITE;
-                  q.push(adjacentVertex);
-              }
+        for (int adjacentVertex=0; adjacentVertex<neighbors_list.size(); adjacentVertex++) {
+            if(adjacentVertex!=u && neighbors_list[adjacentVertex]!=0){
+                if(color[adjacentVertex]==color[u])
+                    bip_flag=false;
+                if (color[adjacentVertex] == Traverse::GRAY && g.graph[u][adjacentVertex] != 0) {
+                    if (color[u] == Traverse::WHITE) {
+                        color[adjacentVertex] = Traverse::BLACK;
+                    } else color[adjacentVertex] = Traverse::WHITE;
+                    q.push(adjacentVertex);
+            }
           }
         }
     }
@@ -40,12 +42,14 @@ void Bipartite::Print_Bip(const map<int, int>& color) {
                 White_Team.push_back(pair.first);
         else Black_Team.push_back(pair.first);
     }
+
+    std::cout<<"The graph is bipartite:"<<endl<<"White:{";
     for(int i : White_Team) {
-        std::cout << "White: " << i << std::endl;
-    }
+        std::cout <<i<<" ";
+    }std::cout <<"}"<<endl<< "Black:{";
     for(int i : Black_Team) {
-        std::cout << "Black: " << i << std::endl;
-        }
+        std::cout << i<<" ";
+        }std::cout<<"}"<<endl;
     }
 
 

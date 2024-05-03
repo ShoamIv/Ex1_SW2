@@ -11,6 +11,7 @@
 #include "Dijkstra.hpp"
 #include "Belman_Ford.hpp"
 #include <limits>
+#include <map>
 #define  MAX std::numeric_limits<int>::max();
 #define NoneWeight 0
 #define Weight 1

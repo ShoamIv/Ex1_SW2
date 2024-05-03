@@ -8,7 +8,7 @@
 
 class Algorithms {
 public:
-    static int isConnected(Graph& g);
+    static void  isConnected(Graph& g);
     static void isContainsCycle(Graph& g);
     static void shortestPath( Graph& g,int start,int end);
     static void isBipartite(Graph& g);

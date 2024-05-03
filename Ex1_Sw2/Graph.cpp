@@ -21,11 +21,14 @@ void Graph::load_graph(vector<vector<int>> graph_matrix) {
     if(flag) {                //init graph.
         this-> graph = graph_matrix;
         this-> num_ver=(int)graph.size();
+        this->directed=true;
         this->color=std::vector<int>(num_ver);
         this->d=std::vector<int>(num_ver);
         this->p=std::vector<int>(num_ver);
+        this->edge_list=std::vector<Edge>();
+        this->neighbors=vector<vector<int>>(num_ver);
         getType();
-        populated_neighbors();
+        Set_Edge();
     }
 }
 
@@ -44,35 +47,24 @@ void Graph::printGraph() {
     for(int i=0; i<num_ver; i++) {
         for (int j = 0; j <num_ver; j++) {
             if (graph[i][j] > 1) Type =1;  // Weighted
-            if (graph[i][j] < 0) {Type =2 ;break;}//NegativeWeighted
+            if (graph[i][j] < 0) {Type =2;break;}//NegativeWeighted
         }
     }
 }
 
-void Graph::Set_Edge(Graph &g) {
-    int i=0;
-    for(int src=0; src<g.graph.size(); src++){
-        for(int dest=0; dest<g.graph.size(); dest++){
-            g.edge_list[i]={src,dest,g.graph[src][dest]};i++;
-        }
-    }
-}
-void Graph::populated_neighbors() {
-    this->neighbors=vector<vector<int>>(num_ver);
-    for (int vertex = 0; vertex < this->num_ver; vertex++) {
-        for (int j = 0; j < this->num_ver; j++) {
-                this->neighbors[vertex].push_back(this->graph[vertex][j]);
-            }
-        }
-    for (int i = 0; i < this->num_ver; i++) {
-     //   cout << "Neighbors of vertex " << i << ": ";
-        for (int j = 0; j < this->neighbors[i].size(); j++) {
-    //        cout << this->neighbors[i][j] << " ";
-        }
-    //    cout << endl;
-    }
-}
+void Graph::Set_Edge() {
+    for(int src=0; src<this->num_ver; src++){
+        for(int dest=0; dest<this->num_ver; dest++){
+                this->edge_list.push_back({src, dest, this->graph[src][dest]});
+                this->neighbors[src].push_back(this->graph[src][dest]);
+                std::map<int,int> nei;
+                if(this->graph[src][dest]>0){nei[src]=dest;
+                this->ne.push_back(nei);}
 
+                if(this->graph[src][dest]!=this->graph[dest][src])this->directed=false;
+        }
+    }
+}
 void Graph::clear() {
     graph.clear();
     num_ver = 0;

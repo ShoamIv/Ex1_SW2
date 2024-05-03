@@ -17,7 +17,7 @@ void Dijkstra::Initiate(int source, int dest,Graph& g) {
         g.color[first]=Traverse::GRAY;
         pq.pop();
         vector<int> neighbors_list = g.neighbors[first]; // Assuming neighbors is now a vector
-        for(int v: neighbors_list) {
+        for(int v=0; v<neighbors_list.size(); v++) {
             if (g.graph[first][v] != 0) {        //if [a][v]==0 no edge.
                 Traverse::relax(first, v, g);
                 if(g.color[v]==Traverse::WHITE){
@@ -32,16 +32,18 @@ void Dijkstra::Initiate(int source, int dest,Graph& g) {
 
 void Dijkstra::Print_ShortestBy_Dijkstra(int source, int target,Graph &g) {
     int v = target;
-    vector<int> path = vector<int>(g.num_ver);
+    vector<int> path;
     while (v != source || v>0) {
         path.push_back(v);
-        v = g.p[target];
+        v = g.p[v];
     }
     if (v == source) {
-        for (int i = (int) path.size() - 1; i >= 0; i--) {
+        path.push_back(v);
+        for (int i = (int) path.size() - 1; i >= 1; i--) {
             cout << path[i];
             cout << "->";
         }
+        cout << path[0]<<endl;
     }else cout << "No path detected.";
 }
 
