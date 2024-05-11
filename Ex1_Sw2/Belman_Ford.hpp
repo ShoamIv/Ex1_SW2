@@ -10,13 +10,12 @@
 #include "Graph.hpp"
 
 class Belman_Ford {
-
-    static void relax_all(int a,int b,Graph &g);
-
     static bool  neg_cycle;
 public:
+    static void PrintPath(int a, int b, Graph &g);
+    static bool BF_ShortestPath(Graph &g,int start,vector<int>&d,vector<int>&p);
     static bool DetectCycle(Graph &g);
-    static void printPath(int a, int b, Graph g);
+    static void printCycle(int a, int b, Graph &g);
 
 };
 #endif //EX1_SW2_BELMAN_FORD_HPP

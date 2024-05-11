@@ -12,7 +12,7 @@
 class Dijkstra {
 public:
     static void Initiate(int source, int dest,Graph& g);
-    static void Print_ShortestBy_Dijkstra(int source, int target,Graph& g);
+    static void Print_ShortestBy_Dijkstra(int source, int target,Graph& g,vector<int>&p);
 };
 
 

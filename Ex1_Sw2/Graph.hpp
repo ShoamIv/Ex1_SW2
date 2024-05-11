@@ -10,29 +10,23 @@ using namespace std;
 
 class Graph{
     void clear();
-
+    void Classified();
+    int Type{};
+    bool directed{};
 public:
     Graph();
     vector<vector<int>> graph;
-    vector<vector<int>> neighbors;
-    std::vector<int> color;
-    std::vector<int> d;
-    std::vector<int> p;
-    bool directed;
-    vector<std::map<int,int>> ne;
     int num_ver{};
-    int Type{};
     void printGraph();
-    void getType();
     void load_graph(vector<vector<int>> graph);
+    int getType();
+    bool getDirected();
     typedef struct edge {
         int source;
         int dest;
         int weight;
     } Edge;
-    void Set_Edge();
     vector<Edge> edge_list;
-
 };
 
 #endif //EX1_SW2_GRAPH_HPP

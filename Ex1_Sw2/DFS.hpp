@@ -8,14 +8,13 @@
 #include "Traverse.hpp"
 
 class DFS {
-    static void DFS_init(int vertex,Graph &g);
-    static void DFS_Visit(int vertex,Graph &g);
-    static void Print_Cycle();
-    static std::vector<int>cycle;
+    static void DFS_Visit(Graph &g, vector<int> &p, vector<int> &color);
+    static void Print_Cycle(vector<int>cycle);
+    static bool Cycle_util(Graph &g,int vertex,vector<int>&p,vector<int>&color);
+    static void Set_DFS(vector<int>p,vector<int>color);
 public:
     static int isConnected_ByDFS(Graph &g);
     static void is_Cyclic(Graph &g);
-
 };
 
 

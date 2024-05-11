@@ -8,7 +8,7 @@
 #include "Traverse.hpp"
 
 class BFS {
-    static void BFS_SET(Graph &g);
+    static void BFS_SET(vector<int>&d,vector<int>&p,vector<int>&color);
     static bool * visit;
     public:
     static void BFS_init(int vertex,int target,Graph &g);

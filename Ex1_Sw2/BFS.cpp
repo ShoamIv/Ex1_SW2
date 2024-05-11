@@ -5,39 +5,42 @@
 
 
 
-void BFS::BFS_init(int vertex,int target,Graph &g ) {
-    BFS_SET(g);
-    string ans;
+void BFS::BFS_init(int source,int dest,Graph &g ) {
+    vector<int>d(g.num_ver);vector<int>p(g.num_ver);vector<int>color(g.num_ver);
+    BFS_SET(d,p,color);
+    vector<int>ans;
     queue<int> q;
-    g.color[vertex] = Traverse::GRAY;
-    g.d[vertex] = 0;
-    q.push(vertex);
+    color[source] = Traverse::GRAY;
+    d[source] = 0;
+    q.push(source);
     while (!q.empty()) {
         int u = q.front();
-        vector<int>neighbors_list = g.neighbors[u]; // Assuming neighbors is now a vector
+        vector<int>neighbors_list = g.graph[u]; // Assuming neighbors is now a vector
         q.pop();
-        ans += std::to_string(u) + "->";
+        ans.push_back(u);
         for (int adjacentVertex=0;adjacentVertex<neighbors_list.size(); adjacentVertex++) {
             if(g.graph[u][adjacentVertex]==0)continue;
-            if (g.color[adjacentVertex] == Traverse::WHITE) {
-                g.color[adjacentVertex] = Traverse::GRAY;
-                g.d[adjacentVertex]= g.d[u]+1;
-                g. p[adjacentVertex]= g.p[u];
+            if (color[adjacentVertex] == Traverse::WHITE) {
+                color[adjacentVertex] = Traverse::GRAY;
+                d[adjacentVertex]= d[u]+1;
+                p[adjacentVertex]= p[u];
                 q.push(adjacentVertex);
             }
         }
-        g.color[vertex]=Traverse::BLACK;
+        color[source]=Traverse::BLACK;
     }
-    if(g.color[target]==Traverse::WHITE) cout <<-1<<endl;else
-    cout<<ans<<endl;
+    if(color[dest]==Traverse::WHITE) cout <<"There is no path between "<<source<<" and "<<dest<<endl;else {
+        for (int i = 0; i < ans.size() - 1; i++) std::cout << ans.at(i) << "->";
+        std::cout << ans.at(ans.size() - 1) << endl;
+    }
 }
 
 
 
-void BFS:: BFS_SET(Graph &g){
-    for(int i=0; i<g.num_ver ; i++){
-        g.color[i]=Traverse::WHITE;
-       g.d[i]=0;g.p[i]=0;
+void BFS:: BFS_SET(vector<int>&d,vector<int>&p,vector<int>&color){
+    for(int i=0; i<d.size();  i++){
+        color[i]=Traverse::WHITE;
+       d[i]=0;p[i]=-1;
     }
 }
 

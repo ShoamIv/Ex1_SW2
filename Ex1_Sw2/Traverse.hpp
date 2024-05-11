@@ -20,12 +20,10 @@
 class Traverse {
 
 public:
-    static bool directed;
-    static bool is_directed(Graph &g);
-    static void relax(int a,int b,Graph &g);
+
+    static void relax(int a,int b,Graph &g,vector<int>&d,vector<int>&p);
     enum color { WHITE,GRAY,BLACK};
     static Graph Transpose(Graph &g);
-
 };
 
 

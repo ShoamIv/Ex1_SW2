@@ -2,15 +2,19 @@
 #include "Algorithms.hpp"
 #include "Traverse.hpp"
 
+
+
 void Algorithms::isConnected(Graph& g) {
-     cout<<DFS::isConnected_ByDFS(g)<<endl;}
+    cout<<DFS::isConnected_ByDFS(g)<<endl;}
 
 void Algorithms::isContainsCycle(Graph& g) {
-    if (g.Type == NegativeWeight) Belman_Ford::DetectCycle(g);else
-         DFS::is_Cyclic(g);}
+    if (g.getType() == NegativeWeight) Belman_Ford::DetectCycle(g);
+    else
+         DFS::is_Cyclic(g);
+}
 
 void Algorithms::shortestPath(Graph& g, int start, int end) {
-    switch(g.Type){
+    switch(g.getType()){
         case NoneWeight:
             BFS::BFS_init(start, end, g);
             break;
@@ -18,7 +22,7 @@ void Algorithms::shortestPath(Graph& g, int start, int end) {
             Dijkstra::Initiate(start, end, g);
             break;
         case NegativeWeight:
-            Belman_Ford::printPath(start, end, g);
+            Belman_Ford::PrintPath(start,end,g);
             break;
         default:
             break;}}

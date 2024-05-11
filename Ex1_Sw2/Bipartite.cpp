@@ -14,7 +14,7 @@ int Bipartite::is_Bip(Graph &g, int vertex) {
     q.push(vertex);
     while (!q.empty()) {
         int u=q.front();
-        vector<int> neighbors_list = g.neighbors[u]; // Assuming neighbors is now a vector
+        vector<int> neighbors_list = g.graph[u]; // Assuming neighbors is now a vector
         q.pop();
         for (int adjacentVertex=0; adjacentVertex<neighbors_list.size(); adjacentVertex++) {
             if(adjacentVertex!=u && neighbors_list[adjacentVertex]!=0){
