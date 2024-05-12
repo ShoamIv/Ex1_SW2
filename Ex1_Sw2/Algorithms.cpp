@@ -1,31 +1,42 @@
 
 #include "Algorithms.hpp"
 #include "Traverse.hpp"
+#include <vector>
+using namespace ariel;
 
 
+int Algorithms::isConnected(ariel::Graph& g) {
+    return DFS::isConnected_ByDFS(g);}
 
-void Algorithms::isConnected(Graph& g) {
-    cout<<DFS::isConnected_ByDFS(g)<<endl;}
-
-void Algorithms::isContainsCycle(Graph& g) {
-    if (g.getType() == NegativeWeight) Belman_Ford::DetectCycle(g);
-    else
-         DFS::is_Cyclic(g);
+string Algorithms::isContainsCycle(ariel::Graph& g) {
+    string ans;
+    if (g.getType() == NegativeWeight) {ans=Belman_Ford::DetectCycle(g);}
+    else{
+         ans=DFS::is_Cyclic(g);
+        }
+    return ans;    
 }
 
-void Algorithms::shortestPath(Graph& g, int start, int end) {
+string Algorithms::shortestPath(ariel::Graph& g, int start, int end) {
+    string ans;
+    string cycle;
     switch(g.getType()){
         case NoneWeight:
-            BFS::BFS_init(start, end, g);
+            cycle=isContainsCycle(g);
+            if(cycle=="no cycle detected."){
+            ans=BFS::BFS_init(start, end, g);
+            }else ans=Dijkstra::Initiate(start, end, g);
             break;
         case Weight:
-            Dijkstra::Initiate(start, end, g);
+            ans=Dijkstra::Initiate(start, end, g);
             break;
         case NegativeWeight:
-            Belman_Ford::PrintPath(start,end,g);
+            ans=Belman_Ford::PrintPath(start,end,g);
             break;
         default:
-            break;}}
+            break;}
+        return ans;    
+        }
 
-void Algorithms::isBipartite(Graph& g) {
-    Bipartite::is_Bip(g,0);}
+string Algorithms::isBipartite(ariel::Graph& g) {
+    return Bipartite::is_Bip(g,0);}

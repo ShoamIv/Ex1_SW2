@@ -1,4 +1,6 @@
-
+/*
+id:206698359    mail:shoamivgi1234@gmail.com
+*/
 #include <queue>
 #include "Traverse.hpp"
 
@@ -16,7 +18,7 @@ Graph Traverse::Transpose(Graph &g) {
             gt[i][j]=g.graph[j][i];
         }
     }
-    t.load_graph(gt);
+    t.loadGraph(gt);
     return t;
 }
 

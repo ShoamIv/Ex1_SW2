@@ -16,7 +16,9 @@
 #define NoneWeight 0
 #define Weight 1
 #define NegativeWeight 2
-
+#include <vector>
+using namespace ariel;
+using namespace std;
 class Traverse {
 
 public:

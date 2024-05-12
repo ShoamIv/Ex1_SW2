@@ -1,7 +1,6 @@
-//
-// Created by vboxuser on 4/27/24.
-//
-
+/*
+id:206698359    mail:shoamivgi1234@gmail.com
+*/
 #ifndef EX1_SW2_BIPARTITE_HPP
 #define EX1_SW2_BIPARTITE_HPP
 
@@ -12,10 +11,12 @@
 #include "Graph.hpp"
 
 class Bipartite {
-    static void Print_Bip(const map<int,int>&color);
-    static int bip_flag;
+    static string Print_Bip(const map<int,int>&color);
+    static bool Biputil(ariel::Graph &g, int vertex,map<int,int>&color);
+
 public:
-    static int is_Bip(Graph &g, int vertex);
+    static string is_Bip(ariel::Graph &g, int vertex);
+
 
 };
 #endif //EX1_SW2_BIPARTITE_HPP

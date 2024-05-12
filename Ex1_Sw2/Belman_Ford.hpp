@@ -8,14 +8,14 @@
 //Single source negative weighted shortest path
 
 #include "Graph.hpp"
-
+using namespace std;
+using namespace ariel;
 class Belman_Ford {
     static bool  neg_cycle;
 public:
-    static void PrintPath(int a, int b, Graph &g);
-    static bool BF_ShortestPath(Graph &g,int start,vector<int>&d,vector<int>&p);
-    static bool DetectCycle(Graph &g);
-    static void printCycle(int a, int b, Graph &g);
+    static string PrintPath(int a, int b,ariel::Graph &g);
+    static bool BF_ShortestPath(ariel::Graph &g,int start,vector<int>&d,vector<int>&p);
+    static string DetectCycle(ariel::Graph &g);
 
 };
 #endif //EX1_SW2_BELMAN_FORD_HPP

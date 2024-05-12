@@ -1,26 +1,25 @@
-//
-// Created by vboxuser on 4/24/24.
-//
+/*
+id:206698359    mail:shoamivgi1234@gmail.com
+*/
 
 #include "Graph.hpp"
 #include <iostream>
 
-
+using namespace ariel;
 using namespace std;
 
 Graph::Graph()= default;
 
-void Graph::load_graph(vector<vector<int>> graph_matrix) {
+void Graph::loadGraph(vector<vector<int>> graph_matrix) {
     clear();
     vector<int> vect;
     bool flag=true;
-    if(graph_matrix.size()!=graph_matrix[0].size()){
-        cout << "Invalid graph: The graph is not a square matrix" << endl;
-        flag=false;
+     if (graph_matrix.size() != graph_matrix[0].size()) {
+        throw std::invalid_argument("Invalid graph: The graph is not a square matrix");
     }
-    if(flag) {                //init graph.
-        this-> graph = graph_matrix;
-        this-> num_ver=(int)graph.size();
+    if(flag) {                
+        this-> graph =graph_matrix;
+        this-> num_ver=graph.size();
         this->directed=true;
         this->edge_list=std::vector<Edge>();
         Classified();
@@ -30,7 +29,7 @@ void Graph::load_graph(vector<vector<int>> graph_matrix) {
 void Graph::printGraph() {
     int count_edges=0;
     for(auto & i : graph){
-        for(int j=0; j<graph[0].size(); j++){
+        for(size_t j=0; j<graph[0].size(); j++){
             if(i[j]!=0) count_edges++;
         }
     }
@@ -40,14 +39,14 @@ void Graph::printGraph() {
 
 void Graph::Classified() {
     Type=0;
-    for(int src=0; src<this->num_ver; src++){
-        for(int dest=0; dest<this->num_ver; dest++) {
-            if (this->graph[src][dest] != this->graph[dest][src])this->directed = false;
+    for(size_t src=0; src<this->num_ver; src++){
+        for(size_t dest=0; dest<this->num_ver; dest++) {
+            if (this->graph[src][dest] != this->graph[(int)dest][(int)src])this->directed = false;
             if (this->graph[src][dest] != 0)
-                this->edge_list.push_back({src, dest, this->graph[src][dest]});
+                this->edge_list.push_back({(int)src,(int)dest,this->graph[src][dest]});
             if(Type!=2) {
-                if (graph[src][dest] > 1) Type = 1;  // Weighted
-                if (graph[src][dest] < 0) Type = 2;         //NegativeWeighted
+                if (graph[(int)src][(int)dest] > 1) Type = 1;  // Weighted
+                if (graph[(int)src][(int)dest] < 0) Type = 2;         //NegativeWeighted
                 }
             }
         }
